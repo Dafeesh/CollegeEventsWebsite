@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.ControllerName = "Users";
+    ViewBag.Title = "Users - Add";
+}
+
+<div class="container">
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+    {
+        <h1 style="color: @if(ViewBag.MessageIsError){ @: red
+            } else { @: green
+            }">
+            @ViewBag.Message
+        </h1>
+        <button type="button" class="btn btn-default">@Html.ActionLink("Go To List of Users", "Index", "Users") </button>
+    }
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Add School</h2>
+            <form action="" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" name="username" value="@ViewBag.Form_Username" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" value="@ViewBag.Form_Password" />
+                </div>
+                <div class="form-group">
+                    <label for="selectprivilege">Privilege Level</label>
+                    <select class="form-control" name="selectprivilege">
+                        <option value="@((int)CollegeEvents.PrivilegeLevel.Student)">
+                            @CollegeEvents.PrivilegeLevel.Student.ToString()
+                        </option>
+                        <option value="@((int)CollegeEvents.PrivilegeLevel.Admin)">
+                            @CollegeEvents.PrivilegeLevel.Admin.ToString()
+                        </option>
+                        <option value="@((int)CollegeEvents.PrivilegeLevel.SuperAdmin)">
+                            @CollegeEvents.PrivilegeLevel.SuperAdmin.ToString()
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="firstname">First Name</label>
+                    <input type="text" class="form-control" name="firstname" value="@ViewBag.Form_FirstName" />
+                    <label for="lastname">Last Name</label>
+                    <input type="text" class="form-control" name="lastname" value="@ViewBag.Form_LastName" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Password</label>
+                    <input type="email" class="form-control" name="email" value="@ViewBag.Form_Email" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" id="submitadd" class="btn btn-default" value="Submit" />
+                    <button type="button" onclick="ClearForm();" class="btn btn-default">Clear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function ClearForm() {
+        $("input[name=username]").val('');
+        $("input[name=password]").val('');
+        //$("select[name=selectprivilege]");
+        $("input[name=firstname]").val('');
+        $("input[name=lastname]").val('');
+        $("input[name=email]").val('');
+    }
+</script>
+
+

@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.ControllerName = "Users";
+    ViewBag.Title = "Users - Index";
+}
+
+<div class="container">
+    <h2>Users</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Privilege</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CollegeEvents.User u in (CollegeEvents.User[])ViewBag.UsersList)
+            {
+                <tr>
+                    <td>@u.Username</td>
+                    <td>@u.Privilege.ToString()</td>
+                    <td>@u.FirstName</td>
+                    <td>@u.LastName</td>
+                    <td>@u.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

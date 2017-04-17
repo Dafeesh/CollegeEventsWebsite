@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.ControllerName = "Schools";
+    ViewBag.Title = "Schools - Index";
+}
+
+<div class="container">
+    <h2>Schools</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>About</th>
+                <th># Students</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CollegeEvents.School s in (CollegeEvents.School[])ViewBag.SchoolsList)
+            {
+                <tr>
+                    <td>@s.Name</td>
+                    <td>@s.Location</td>
+                    <td>@s.About</td>
+                    <td>@s.NumStudents.ToString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

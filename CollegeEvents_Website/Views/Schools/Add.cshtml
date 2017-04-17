@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.ControllerName = "Schools";
+    ViewBag.Title = "Schools - Add";
+}
+
+<div class="container">
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+    {
+        <h1 style="color: @if(ViewBag.MessageIsError){ @: red
+            } else { @: green
+            }">
+            @ViewBag.Message
+        </h1>
+        <button type="button" class="btn btn-default">@Html.ActionLink("Go To List of Schools", "Index", "Schools") </button>
+    }
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Add School</h2>
+            <form action="" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" name="name" value="@ViewBag.Form_Name" />
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" class="form-control" name="location" value="@ViewBag.Form_Location" />
+                </div>
+                <div class="form-group">
+                    <label for="about">About</label>
+                    <input type="text" class="form-control" name="about" value="@ViewBag.Form_About" />
+                </div>
+                <div class="form-group">
+                    <label for="numstudents"># of Students</label>
+                    <input type="text" class="form-control" name="numstudents" value="@ViewBag.Form_NumStudents" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" id="submitadd" class="btn btn-default" value="Submit" />
+                    <button type="button" onclick="ClearForm();" class="btn btn-default">Clear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function ClearForm() {
+        $("input[name=name]").val('');
+        $("input[name=location]").val('');
+        $("input[name=about]").val('');
+        $("input[name=numstudents]").val('');
+    }
+</script>
+            
+            
+            
