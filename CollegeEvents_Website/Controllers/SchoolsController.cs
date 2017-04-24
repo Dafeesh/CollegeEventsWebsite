@@ -11,6 +11,8 @@ namespace CollegeEvents.Website.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            Session.Pull(this);
+
             ViewBag.SchoolsList = Database.DatabaseInterface.SelectSchools();
             return View();
         }
@@ -18,6 +20,8 @@ namespace CollegeEvents.Website.Controllers
         [HttpGet]
         public IActionResult Add()
         {
+            Session.Pull(this);
+
             //ViewBag.ErrorMessage = "Hello GET";
             return View();
         }
@@ -25,6 +29,8 @@ namespace CollegeEvents.Website.Controllers
         [HttpPost]
         public IActionResult Add(Microsoft.AspNetCore.Http.IFormCollection data)
         {
+            Session.Pull(this);
+
             School s = new School()
             {
                 Name = HttpContext.Request.Form["name"].ToString().Trim(),

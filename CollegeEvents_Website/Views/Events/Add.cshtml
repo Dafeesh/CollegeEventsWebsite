@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.ControllerName = "Events";
+    ViewBag.Title = "Events - Add";
+}
+
+<div class="container">
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+    {
+        <h1 style="color: @if(ViewBag.MessageIsError){ @: red
+            } else { @: green
+            }">
+            @ViewBag.Message
+        </h1>
+        <button type="button" class="btn btn-default">@Html.ActionLink("Go To List of Events", "Index", "Events") </button>
+    }
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Add Event</h2>
+            <form action="" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" name="name" value="" />
+                </div>
+                <div class="form-group">
+                    <label for="about">About</label>
+                    <input type="text" class="form-control" name="about" value="" />
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" class="form-control" name="location" value="" />
+                </div>
+                <div class="form-group">
+                    <label for="starttime">Start Time</label>
+                    <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' name="starttime" class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="endtime">End Time</label>
+                    <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' name="endtime" class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" id="submitadd" class="btn btn-default" value="Submit" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
+</script>

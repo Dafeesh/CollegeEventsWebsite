@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.ControllerName = "Home";
+    ViewBag.Title = "Home - Login";
+}
+
+<div class="container">
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+    {
+        <h1 style="color: red"> @ViewBag.Message </h1>
+    }
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Login</h2>
+            <form action="" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" name="username" value="" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" value="@ViewBag.Form_Location" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" id="submitlogin" class="btn btn-default" value="Login" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

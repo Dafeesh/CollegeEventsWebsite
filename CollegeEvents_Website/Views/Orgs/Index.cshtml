@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.ControllerName = "Orgs";
+    ViewBag.Title = "Organizations - Get";
+
+    Tuple<CollegeEvents.Organization, CollegeEvents.User[]>[] orgs =
+        (Tuple<CollegeEvents.Organization, CollegeEvents.User[]>[])ViewBag.Orgs;
+}
+
+<div class="container">
+    <h2>RSOs</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>About</th>
+                <th>Members</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Tuple<CollegeEvents.Organization, CollegeEvents.User[]> t in orgs)
+            {
+                CollegeEvents.Organization org = t.Item1;
+                CollegeEvents.User[] users = t.Item2;
+                <tr>
+                    <td>@org.Name</td>
+                    <td>@org.About</td>
+                    <td>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>First</th>
+                                    <th>Last</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (CollegeEvents.User u in users)
+                                {
+                                    <tr>
+                                        <td>@u.FirstName</td>
+                                        <td>@u.LastName</td>
+                                        <td>@u.Email</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <a href="/Orgs/ToggleJoin/@org.Id ">Join/Leave</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

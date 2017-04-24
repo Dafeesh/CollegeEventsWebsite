@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.ControllerName = "Events";
+    ViewBag.Title = "Events";
+
+    CollegeEvents.PlannedEvent ev = (CollegeEvents.PlannedEvent)ViewBag.Event;
+}
+
+<div class="container">
+    <h2>@ev.Name</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>About</th>
+                <th>Location</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>School</th>
+                <th>RSO</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@ev.Name</td>
+                <td>@ev.About</td>
+                <td>@ev.Location</td>
+                <td>@ev.StartTime.ToString()</td>
+                <td>@ev.EndTime.ToString()</td>
+                <td>
+                    @if (ev.HostSchoolId == null)
+                    {
+                    <span>-</span>
+                    }
+                    else
+                    {
+                    <span>@CollegeEvents.Database.DatabaseInterface.SelectSchools(id: ev.HostSchoolId.Value).First().Name</span>
+                    }
+                </td>
+                <td>
+                    @if (ev.HostOrgId == null)
+                    {
+                    <span>-</span>
+                    }
+                    else
+                    {
+                    <span>@CollegeEvents.Database.DatabaseInterface.SelectOrganizations(id: ev.HostOrgId.Value).First().Name</span>
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Comments</th>
+                <th>-</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr name="comment1">
+                <td>simpleadmin</td>
+                <td>Wow what a cool event!</td>
+                <td><button onclick="$('name=comment1').hide();">Delete</button></td>
+            </tr>
+            <tr>
+                <td><input type="text"></td>
+                <td><button onclick="">Post</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

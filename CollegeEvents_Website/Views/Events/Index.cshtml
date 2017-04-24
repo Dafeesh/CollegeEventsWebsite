@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.ControllerName = "Events";
+    ViewBag.Title = "Events";
+}
+
+<div class="container">
+    <h2>Events</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Start Time</th>
+                <th>School</th>
+                <th>RSO</th>
+                <th>-</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CollegeEvents.PlannedEvent e in (CollegeEvents.PlannedEvent[])ViewBag.EventsList)
+            {
+                <tr>
+                    <td>@e.Name</td>
+                    <td>@e.StartTime.ToString()</td>
+                    <td>
+                        @if (e.HostSchoolId == null)
+                        {
+                            <span>-</span>
+                        }
+                        else
+                        {
+                            <span>@CollegeEvents.Database.DatabaseInterface.SelectSchools(id: e.HostSchoolId.Value).First().Name</span>
+                        }
+                    </td>
+                    <td>
+                        @if (e.HostOrgId == null)
+                        {
+                            <span>-</span>
+                        }
+                        else
+                        {
+                            <span>@CollegeEvents.Database.DatabaseInterface.SelectOrganizations(id: e.HostOrgId.Value).First().Name</span>
+                        }
+                    </td>
+                    <td>
+                        <a href="/Events/Inspect/@e.Id ">View</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
